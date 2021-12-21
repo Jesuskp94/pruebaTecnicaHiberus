@@ -4,19 +4,18 @@ import 'package:magichiberus/domain/entities/carta_entitie.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class CartasProvider extends ChangeNotifier{
+class CartasProvider extends ChangeNotifier {
   List<Carta> listaCartas = [];
   
-  CartasProvider(){
-    this.getAllCards();
+  CartasProvider() {
+    this.getAllCartas();
   }
   
-  getAllCards() async {
+  Future<List<Carta>> getAllCartas() async {
     var urlMagicAPI = Uri.parse('https://api.magicthegathering.io/v1/cards');
     var response = await http.get(urlMagicAPI);
 
-    listaCartas = parseadoCartas(response.body);
-    print(listaCartas.elementAt(0).name);
+    return listaCartas = parseadoCartas(response.body);
   }
 
   List<Carta> parseadoCartas(String responseBody){
