@@ -36,7 +36,7 @@ class Carta {
   String? toughness;
   String layout;
   String? multiverseid;
-  String? imageUrl;
+  String imageUrl;
   String? originalText;
   String? originalType;
   String? watermark;
@@ -58,13 +58,17 @@ class Carta {
         this.toughness,
         required this.layout,
         this.multiverseid,
-        this.imageUrl,
+        required this.imageUrl,
         this.originalText,
         this.originalType,
         this.watermark,
         required this.id,});
 
   factory Carta.fromJson(Map<String, dynamic> json) {
+    String imageURL = "";
+    if (json['imageUrl'] != null){
+      imageURL = json['imageUrl'];
+    }
     return Carta(
       name : json['name'],
       manaCost : json['manaCost'],
@@ -81,7 +85,7 @@ class Carta {
       toughness : json['toughness'],
       layout : json['layout'],
       multiverseid : json['multiverseid'],
-      imageUrl : json['imageUrl'],
+      imageUrl : imageURL,
       originalText : json['originalText'],
       originalType : json['originalType'],
       watermark : json['watermark'],
