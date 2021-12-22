@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constantes.dart';
+import '../utils/constantes.dart';
 
 class AdaptiveScaffold extends StatelessWidget {
   final List<TabItem> tabs;
