@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:magichiberus/ui/widgets/home_page/InfoCard.dart';
 
 class HomePage extends StatelessWidget{
 
@@ -12,9 +14,46 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold (
       appBar: AppBar(title: Text('About me'),),
-      body: Center(
-        child: Text("Pagina del home en la que tengo que poner todos mis datos"),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/avatar.jpg'),
+            ),
+            Text(nombre,
+                style: GoogleFonts.pacifico(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 20,
+              width: 200,
+              child: Divider(
+                color: Colors.teal.shade700,
+              ),
+            ),
+            InfoCard(
+              text: phone,
+              icon: Icons.phone,
+            ),
+            InfoCard(
+              text: email,
+              icon: Icons.email,
+            ),
+            InfoCard(
+              text: linkedin,
+              icon: Icons.web,
+            ),
+            InfoCard(
+              text: date,
+              icon: Icons.date_range,
+            ),
+          ],
+        ),
       ),
+      backgroundColor: Colors.green[200],
     );
   }
 }

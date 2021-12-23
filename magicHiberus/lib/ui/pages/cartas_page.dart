@@ -14,23 +14,24 @@ class _CardsPageState extends State<CardsPage> {
   Widget build(BuildContext context) {
 
     return Scaffold (
-        appBar: AppBar(
-          title: Text('CardsPage'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.compare_arrows,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                setState(() {
-                  _cambiarVista = !_cambiarVista;
-                });
-              },
-            )
-          ],
-        ),
-        body: manejadorWidgetCartas()
+      appBar: AppBar(
+        title: Text('CardsPage'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.compare_arrows,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              setState(() {
+                _cambiarVista = !_cambiarVista;
+              });
+            },
+          )
+        ],
+      ),
+      body: manejadorWidgetCartas(),
+      backgroundColor: Colors.green[200],
     );
   }
 
