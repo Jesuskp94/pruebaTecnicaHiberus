@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:magichiberus/data/providers/cartas_provider.dart';
 import 'package:magichiberus/domain/entities/carta_entitie.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CardsPage extends StatefulWidget{
   @override
@@ -28,10 +29,10 @@ class _CardsPageState extends State<CardsPage> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-
                   CarouselSlider(
                     options: CarouselOptions(
-                      height: size.height * 0.7 - 100,
+                      height: size.height * 0.6,
+                      aspectRatio: 4/3,
                       enlargeCenterPage: true,
                       enableInfiniteScroll: true,
                       onPageChanged: (index, direccion) {
@@ -42,32 +43,26 @@ class _CardsPageState extends State<CardsPage> {
                     ),
                     items: _crearListaItems(snapshot.data, context),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: snapshot.data!.map((urlOfItem) {
-                      int index = snapshot.data!.indexOf(urlOfItem);
-                      return Container(
-                        width: 10.0,
-                        height: 10.0,
-                        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _posicionActual == index
-                              ? Color.fromRGBO(0, 0, 0, 0.8)
-                              : Color.fromRGBO(0, 0, 0, 0.3),
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                  SizedBox(height: 10,),
+                  dotIndicator(snapshot.data!.length)
                 ],
               ),
             );
-
           },
         ),
       )
     );
   }
+
+  Widget dotIndicator(int length) => AnimatedSmoothIndicator(
+    activeIndex: _posicionActual,
+    count: length,
+    effect: ScrollingDotsEffect(
+        dotHeight: 10,
+        dotWidth: 10,
+        dotColor: Colors.grey,
+        activeDotColor: Colors.green),
+  );
 
   List<Widget> _crearListaItems(List<dynamic>? data, BuildContext context) {
     final List<Widget> cartas = [];
