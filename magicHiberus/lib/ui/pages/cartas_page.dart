@@ -25,21 +25,44 @@ class _CardsPageState extends State<CardsPage> {
           initialData: [],
           future: cartasProvider.getAllCartas(),
           builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-            return CarouselSlider(
-              options: CarouselOptions(
-                height: size.height,
-                enlargeCenterPage: true,
-                enableInfiniteScroll: false,
-                autoPlay: false,
-                initialPage: 33,
-                onPageChanged: (index, direccion){
-                  setState(() {
-                    _posicionActual = index;
-                  });
-                }
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: size.height * 0.7 - 100,
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: true,
+                      onPageChanged: (index, direccion) {
+                        setState(() {
+                          _posicionActual = index;
+                        });
+                      }
+                    ),
+                    items: _crearListaItems(snapshot.data, context),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: snapshot.data!.map((urlOfItem) {
+                      int index = snapshot.data!.indexOf(urlOfItem);
+                      return Container(
+                        width: 10.0,
+                        height: 10.0,
+                        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _posicionActual == index
+                              ? Color.fromRGBO(0, 0, 0, 0.8)
+                              : Color.fromRGBO(0, 0, 0, 0.3),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
-              items: _crearListaItems(snapshot.data, context),
             );
+
           },
         ),
       )
