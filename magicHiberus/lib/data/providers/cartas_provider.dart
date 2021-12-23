@@ -17,8 +17,14 @@ class CartasProvider extends ChangeNotifier {
 
   Future<List<Carta>> getAllCartas() async {
     var response = await cartasRepositorio!.getAllCartasRepo();
-    listaCartas = parseadoCartas(response.body);
-    return listaCartas;
+    if (response.statusCode == 200){
+      listaCartas = parseadoCartas(response.body);
+      if(listaCartas != null){
+        return listaCartas;
+      }
+    }
+    print ('Error en la comunicación con el servixcor');
+    throw response;
   }
   //TODO: comprobar que la carta no es nula o está vacia
   Future<Carta> getCartaById(int id) async {
