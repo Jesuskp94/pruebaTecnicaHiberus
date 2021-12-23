@@ -13,11 +13,15 @@ class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold (
-      appBar: AppBar(title: Text('About me'),),
-      body: SafeArea(
+      appBar: AppBar(
+        title: Text('About me'),
+        backgroundColor: Colors.green,
+      ),
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 10,),
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/avatar.jpg'),
@@ -25,7 +29,7 @@ class HomePage extends StatelessWidget{
             Text(nombre,
                 style: GoogleFonts.pacifico(
                     fontSize: 40,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold)),
             SizedBox(
               height: 20,

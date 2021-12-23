@@ -39,7 +39,7 @@ class _ListaCartasState extends State<ListaCartas> {
                   child: ValueListenableBuilder<Carta>(
                     valueListenable: _selection,
                     builder: (context, carta, child) {
-                      if (carta == null) {
+                      if (carta.name.isEmpty) {
                         return Center(child: Text('No has seleccionado ninguna darta'));
                       }
                       return DetallesCarta(carta: carta);

@@ -16,6 +16,7 @@ class _CardsPageState extends State<CardsPage> {
     return Scaffold (
       appBar: AppBar(
         title: Text('CardsPage'),
+        backgroundColor: Colors.green,
         actions: <Widget>[
           IconButton(
             icon: Icon(

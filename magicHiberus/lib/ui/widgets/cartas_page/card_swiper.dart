@@ -43,7 +43,7 @@ class _CardSwiperState extends State<CardSwiper> {
                   ),
                   items: _crearListaItems(snapshot.data, context),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 20,),
                 dotIndicator(snapshot.data!.length)
               ],
             ),
@@ -60,7 +60,7 @@ class _CardSwiperState extends State<CardSwiper> {
         dotHeight: 10,
         dotWidth: 10,
         dotColor: Colors.grey,
-        activeDotColor: Colors.green),
+        activeDotColor: Colors.black),
   );
 
   List<Widget> _crearListaItems(List<dynamic>? data, BuildContext context) {
