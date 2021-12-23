@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:magichiberus/data/providers/cartas_provider.dart';
@@ -76,8 +77,9 @@ class _CardsPageState extends State<CardsPage> {
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              Image.network(carta.imageUrl,
-                fit: BoxFit.contain,
+              CachedNetworkImage(
+                placeholder: (context, url) => new CircularProgressIndicator(),
+                imageUrl: carta.imageUrl,
               )
             ],
           ),
