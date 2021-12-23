@@ -1,5 +1,4 @@
 import 'package:http/http.dart';
-import 'package:magichiberus/domain/entities/carta_entitie.dart';
 
 abstract class ICartasRepositorio {
 

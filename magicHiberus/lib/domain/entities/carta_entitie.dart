@@ -91,6 +91,31 @@ class Carta {
       watermark : json['watermark'],
       id : json['id'],
     );
+  }
+
+  factory Carta.dumydata() {
+    return Carta(
+      name : "",
+      manaCost : "",
+      cmc : 0.0,
+      type : "",
+      rarity : "",
+      set : "",
+      setName : "",
+      text : "",
+      flavor : "",
+      artist : "",
+      number : "",
+      power : "",
+      toughness : "",
+      layout : "",
+      multiverseid : "",
+      imageUrl : "",
+      originalText : "",
+      originalType : "",
+      watermark : "",
+      id : "",
+    );
 
   }
 
