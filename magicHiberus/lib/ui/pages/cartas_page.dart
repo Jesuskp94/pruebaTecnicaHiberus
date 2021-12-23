@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:magichiberus/data/providers/cartas_provider.dart';
@@ -67,19 +66,34 @@ class _CardsPageState extends State<CardsPage> {
 
   List<Widget> _crearListaItems(List<dynamic>? data, BuildContext context) {
     final List<Widget> cartas = [];
+    Widget widgetTemporal;
     data!.forEach((element) {
       Carta carta = element;
       if (carta.imageUrl.isEmpty){
-        cartas..add(Image.asset('assets/image-not-found.jpg'));
+        widgetTemporal = Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(carta.name),
+            SizedBox(height: 10,),
+            Image.asset('assets/image-not-found.jpg')
+          ],
+        );
+        cartas..add(widgetTemporal);
       }else{
-        final widgetTemporal = ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+        widgetTemporal = ClipRRect(
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              CachedNetworkImage(
-                placeholder: (context, url) => new CircularProgressIndicator(),
-                imageUrl: carta.imageUrl,
+              Image.network(
+                carta.imageUrl,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+                fit: BoxFit.contain,
               )
             ],
           ),
