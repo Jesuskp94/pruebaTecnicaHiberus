@@ -63,19 +63,21 @@ class _ListaCartasState extends State<ListaCartas> {
   }
 
   Widget buildListView(ValueChanged<Carta> onSelect, List<dynamic>? data) {
-    if(data!.isNotEmpty){
-      return ListView.separated(
-        separatorBuilder: (context, index) => Divider(height: 0),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          final _carta = data.elementAt(index);
-          return ListTile(
-            leading: Icon(Icons.arrow_forward),
-            title: Text(_carta.name),
-            onTap: () => onSelect(_carta),
-          );
-        },
-      );
+    if(data != null){
+      if(data.isNotEmpty){
+        return ListView.separated(
+          separatorBuilder: (context, index) => Divider(height: 0),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            final _carta = data.elementAt(index);
+            return ListTile(
+              leading: Icon(Icons.arrow_forward),
+              title: Text(_carta.name),
+              onTap: () => onSelect(_carta),
+            );
+          },
+        );
+      }
     }
     return Center(child: Text('No hay cartas'),);
   }

@@ -62,11 +62,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     if(_connectionStatus == ConnectivityResult.none) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: MyApp.titulo,
         home: Scaffold(
-            body: Center(
-              child: Text('Sin internet'),
-            ),
+          appBar: AppBar(title: Text('No internet',),backgroundColor: Colors.green,),
+          body: Column(
+            children: [
+              _showDialog(context,title: 'Connection error', msg: 'Actulamente no tienes internet, la aplicación no va a funcionar correctamente'),
+            ]
+          ),
         ),
       );
     } else {
@@ -79,5 +83,11 @@ class _MyAppState extends State<MyApp> {
         home: TabHome(),
       );
     }
+  }
+  AlertDialog _showDialog(BuildContext context, {String? title, String? msg}) {
+    return AlertDialog(
+      title: Text('$title'),
+      content: Text('$msg'),
+    );
   }
 }

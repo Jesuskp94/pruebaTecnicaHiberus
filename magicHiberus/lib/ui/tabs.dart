@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:magichiberus/ui/pages/buscador_page.dart';
 
 import 'package:magichiberus/ui/pages/home_page.dart';
 import 'package:magichiberus/ui/pages/cartas_page.dart';
@@ -27,11 +26,6 @@ class _TabHomeState extends State<TabHome> {
             title: 'Cartas',
             iconData: Icons.library_books,
             body: CardsPage(),
-          ),
-          TabItem(
-            title: 'Search',
-            iconData: Icons.search,
-            body: Buscadorpage(),
           ),
         ],
         selectedIndex: index,

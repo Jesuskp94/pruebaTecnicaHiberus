@@ -65,44 +65,33 @@ class _CardSwiperState extends State<CardSwiper> {
 
   List<Widget> _crearListaItems(List<dynamic>? data, BuildContext context) {
     final List<Widget> cartas = [];
-    Widget widgetTemporal;
-    data!.forEach((element) {
-      Carta carta = element;
-      //TODO: he hecho trampitas para la prueba, esto es corregible
-      /*if (carta.imageUrl.isEmpty){
-        widgetTemporal = Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(carta.name),
-            SizedBox(height: 10,),
-            Image.asset('assets/image-not-found.jpg')
-          ],
-        );
-        cartas..add(widgetTemporal);
-      }else{*/
-      if (carta.imageUrl.isNotEmpty){
-        widgetTemporal = ClipRRect(
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              Image.network(
-                carta.imageUrl,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-                fit: BoxFit.contain,
-              )
-            ],
-          ),
-        );
-        cartas..add(widgetTemporal);
-      }
-    });
-
-    return cartas;
+    if(data != null) {
+      Widget widgetTemporal;
+      data.forEach((element) {
+        Carta carta = element;
+        if (carta.imageUrl.isNotEmpty) {
+          widgetTemporal = ClipRRect(
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                Image.network(
+                  carta.imageUrl,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  fit: BoxFit.contain,
+                )
+              ],
+            ),
+          );
+          cartas..add(widgetTemporal);
+        }
+      });
+      return cartas;
+    }
+    return cartas..add(Center(child: Text('No hay cartas'),));
   }
 }
